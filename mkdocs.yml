@@ -21,13 +21,13 @@ theme:
     - toc.follow               # 목차 자동 스크롤
   palette:
     - scheme: default          # 라이트 모드
-      primary: indigo
+      primary: red
       accent: indigo
       toggle:
         icon: material/weather-night
         name: 다크 모드로 전환
     - scheme: slate            # 다크 모드
-      primary: indigo
+      primary: red
       accent: indigo
       toggle:
         icon: material/weather-sunny
