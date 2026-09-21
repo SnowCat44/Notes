@@ -20,20 +20,27 @@ theme:
     - content.action.edit      # 각 문서 편집 링크
     - toc.follow               # 목차 자동 스크롤
   palette:
-    - scheme: default          # 라이트 모드
-      primary: red
+    # 시스템 설정 자동 감지
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: 시스템 설정 사용 중 (색상 수동 전환)
+    # 라이트 모드
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
       accent: indigo
       toggle:
         icon: material/weather-night
         name: 다크 모드로 전환
-    - scheme: slate            # 다크 모드
-      primary: red
+    # 다크 모드
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
       accent: indigo
       toggle:
         icon: material/weather-sunny
         name: 라이트 모드로 전환
-  icon:
-    repo: fontawesome/brands/github
 
 # 한국어 + 영어 동시 검색 지원
 plugins:
