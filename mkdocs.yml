@@ -1,8 +1,8 @@
 site_name: Notes on Information Security, Cryptography, and Mathematics
 site_description: 정보보안 · 암호 · 수학 학술 노트
-site_url: https://YOUR_USERNAME.github.io/Notes/
-repo_url: https://github.com/YOUR_USERNAME/Notes
-repo_name: YOUR_USERNAME/Notes
+site_url: https://SnowCat44.github.io/Notes/
+repo_url: https://github.com/SnowCat44/Notes
+repo_name: SnowCat44/Notes
 edit_uri: edit/main/docs/
 
 theme:
