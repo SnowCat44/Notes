@@ -4,6 +4,6 @@
 
 ## 항목 목록
 
-- [CIA 3요소 (CIA Triad)](cia-triad.md)
+- 안녕하세요
 
 <!-- 새 항목을 추가하면 위 목록과 mkdocs.yml의 nav에 한 줄씩 더하세요. -->
