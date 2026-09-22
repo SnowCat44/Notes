@@ -2,7 +2,7 @@
 site_name: Notes on Information Security, Cryptography, and Mathematics
 
 # 사이트 URL - 실제로 배포되는 사이트 주소
-site_url: https://SnowCat44.github.io/Notes
+site_url: https://SnowCat44.github.io/notes
 
 # 저장소 URL - GitHub 저장소 주소
 repo_url: https://github.com/SnowCat44/SnowCat44
@@ -109,4 +109,4 @@ nav:
   - 수학 (Mathematics):
       - 개요: mathematics/index.md
       - 예시 항목 — 유한체: mathematics/finite-field.md
-  - 참고자료 (References): refs/index.md
+  - 참고자료 (References): refs/
