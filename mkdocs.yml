@@ -109,4 +109,6 @@ nav:
   - 수학 (Mathematics):
       - 개요: mathematics/index.md
       - 예시 항목 — 유한체: mathematics/algebra.md
-  - 참고자료 (References): references/
+  - 참고자료 (References):
+      - 개요: references/index.md
+  
