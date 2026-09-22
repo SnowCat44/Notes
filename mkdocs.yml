@@ -13,12 +13,13 @@ repo_name: SnowCat44/notes
 # 저장소 브랜치 - 이 페이지 편집 링크의 경로 규칙
 edit_uri: edit/main/docs/
 
+extra:
+  generator: false
+
 theme:
   name: material
   language: ko
   #generator: false             #  "Made with Material for MkDocs" 문구 제거
-  extra:
-    generator: false
   features:
     - navigation.instant       # 페이지 즉시 전환
     - navigation.tracking      # URL에 현재 위치 반영
