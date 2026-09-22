@@ -16,7 +16,9 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: ko
-  generator: false             #  "Made with Material for MkDocs" 문구 제거
+  #generator: false             #  "Made with Material for MkDocs" 문구 제거
+  extra:
+    generator: false
   features:
     - navigation.instant       # 페이지 즉시 전환
     - navigation.tracking      # URL에 현재 위치 반영
