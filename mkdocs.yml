@@ -102,13 +102,10 @@ nav:
   - 홈: index.md
   - 정보보안 (Information Security):
       - 개요: information-security/index.md
-      - 예시 항목 — CIA 3요소: information-security/cia-triad.md
   - 암호 (Cryptography):
       - 개요: cryptography/index.md
-      - 예시 항목 — ML-DSA: cryptography/ml-dsa.md
   - 수학 (Mathematics):
       - 개요: mathematics/index.md
-      - 예시 항목 — 유한체: mathematics/algebra.md
   - 참고자료 (References):
       - 개요: references/index.md
   

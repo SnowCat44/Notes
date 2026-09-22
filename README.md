@@ -1,42 +1,198 @@
-# Notes on Information Security, Cryptography, and Mathematics
+# 운영 매뉴얼 (개인용)
 
+> 이 문서는 나만 보는 작업 규칙서다. 앞으로 페이지를 추가·수정할 때 **통일성**을 지키기 위한 기준을 모아둔다.
+> 사이트에는 노출하지 않는다(원한다면 `nav`에 넣지 않으면 됨).
 
-## 새 항목 추가하는 법
+---
 
-1. 해당 구역 폴더(`docs/information-security/`, `docs/cryptography/`, `docs/mathematics/`)에 `파일이름.md`를 만듭니다. (영문 소문자 + 하이픈 권장)
-2. 내용은 `docs/refs/index.md` 하단의 **항목 템플릿**을 복사해 채웁니다.
-3. `mkdocs.yml`의 `nav`에 해당 파일을 한 줄 추가합니다.
-4. 저장 후 push하면 사이트에 반영됩니다.
+## 0. 이 사이트가 동작하는 원리 (요약)
 
-
-## 사용법 요약
-
-- **검색**: 상단 검색창에서 한글·영어 모두 검색됩니다.
-- **새 항목 추가**: 해당 구역 폴더에 `.md` 파일을 만들고, `mkdocs.yml`의 `nav`에 한 줄 추가합니다.
-- **내부 링크**: `[유한체](../mathematics/finite-field.md)` 처럼 파일 경로로 다른 항목을 연결합니다.
-- **수식**: 인라인은 `$...$`, 블록은 `$$...$$` 로 작성합니다. (예: $E=mc^2$)
-- **코드/알고리즘**: 삼중 백틱 코드 블록에 언어를 지정하면 문법이 강조됩니다.
-- **참고 PDF**: `docs/refs/` 폴더에 PDF를 넣고 링크하거나, 외부 DOI/URL로 링크합니다.
-
-!!! tip "항목 작성 템플릿"
-    새 항목을 만들 때는 [참고자료 페이지](refs/index.md) 하단의 **항목 템플릿**을 복사해서 시작하세요.
-
-
-## 폴더 구조
+내가 쓰는 것은 `docs/` 안의 파일뿐이고, 나머지는 도구가 알아서 처리한다.
 
 ```
-notes/
-├─ mkdocs.yml                  # 사이트 설정
-├─ requirements.txt
-├─ README.md
-├─ .gitignore
-├─ .github/workflows/deploy.yml   # 자동 배포
-└─ docs/
-   ├─ index.md                 # 홈
-   ├─ javascripts/mathjax.js   # 수식 렌더링
-   ├─ stylesheets/extra.css    # 사용자 정의 스타일
-   ├─ information-security/
-   ├─ cryptography/
-   ├─ mathematics/
-   └─ refs/                    # 참고자료 + PDF 저장 위치
+docs/*.md (내가 쓰는 글) + mkdocs.yml (설정)
+        │  GitHub Desktop에서 Commit → Push
+        ▼
+GitHub Actions(.github/workflows/deploy.yml)가 자동 실행
+        │  mkdocs build --strict 로 HTML 변환
+        ▼
+GitHub Pages가 인터넷에 게시
+        ▼
+https://snowcat44.github.io/Notes/
 ```
+
+핵심 구분:
+- **글(내용)을 바꾼다** → `docs/`의 해당 `.md`를 수정
+- **틀·기능·모양을 바꾼다** → `mkdocs.yml`을 수정
+- **`site/` 폴더** → 빌드 자동 생성물. 신경 쓸 필요 없음(`.gitignore`에 등록됨)
+
+---
+
+## 1. 폴더 / 파일 구조
+
+```
+docs/
+├─ index.md                     # 홈 화면 본문
+├─ information-security/         # 정보보안 구역
+│   ├─ index.md                 #   구역 개요
+│   └─ (용어).md                #   개별 항목
+├─ cryptography/                # 암호 구역
+│   ├─ index.md
+│   └─ (용어).md
+├─ mathematics/                 # 수학 구역
+│   ├─ index.md
+│   └─ (용어).md
+├─ references/                  # 참고자료 + PDF 저장
+│   └─ index.md
+├─ javascripts/mathjax.js       # 수식 렌더링 (건드리지 말 것)
+└─ stylesheets/extra.css        # 사용자 정의 디자인 (정의 상자 등)
+```
+
+**절대 규칙:**
+- `docs/` **밖으로 파일을 옮기면 사이트에서 사라진다.** MkDocs는 `docs/` 안만 재료로 본다.
+- `javascripts/`, `stylesheets/`는 **기능 파일**이다. `mkdocs.yml`이 참조하므로 옮기거나 지우면 수식·디자인이 깨지고 빌드가 실패한다. 손대지 않는다.
+
+---
+
+## 2. 새 항목 추가 절차 (매번 이 순서)
+
+1. 해당 구역 폴더에 새 `.md` 파일을 만든다. (이름 규칙은 3번 참고)
+2. 내용은 **항목 템플릿**(`docs/references/index.md` 하단, 또는 아래 6번)을 복사해 채운다.
+3. `mkdocs.yml`의 `nav`에 그 파일을 **한 줄 추가**한다. (안 하면 사이드바에 안 뜸)
+4. 필요하면 그 구역의 `index.md`(개요)의 항목 목록에도 링크를 더한다.
+5. GitHub Desktop에서 **Commit → Push**.
+6. 저장소 **Actions 탭**에서 초록 체크(성공)를 확인한다. 1~2분 뒤 사이트에 반영.
+
+---
+
+## 3. 파일 명명 원칙 (링크 깨짐 방지의 핵심)
+
+- 파일 이름은 **영문 소문자 + 하이픈**. 예: `finite-field.md`, `block-cipher.md`
+- **대문자 금지.** GitHub는 대소문자를 구분한다. `Algebra.md`와 `algebra.md`는 다른 파일로 취급되어 링크가 깨진다. (실제로 겪은 문제)
+- **철자 주의.** `algbra` 같은 오타 하나로 링크가 깨지고 빌드가 실패한다.
+- **파일 이름 = URL = 주소.** 한 번 정하면 웬만하면 바꾸지 않는다. 바꾸면 그 파일을 가리키던 모든 링크가 깨진다.
+- 바꾸고 싶을 땐 **표시 제목(파일 안 `# 제목`)만** 바꾼다. 제목은 바꿔도 링크가 안 깨진다.
+  - 원칙: **파일 이름(주소)은 고정, 표시 제목은 자유.**
+
+---
+
+## 4. 내부 링크 규칙
+
+- 다른 항목은 **상대 경로 + 파일명**으로 건다. 예: `[유한체](../mathematics/finite-field.md)`
+- 링크 대상이 실제 파일과 다르면 **`--strict` 빌드가 실패한다.** (배포 안 됨 → 안전장치)
+- 파일을 옮기거나 이름을 바꿨다면, **그것을 가리키던 링크를 전부 함께 고쳐야 한다.**
+  - 어디가 깨졌는지는 **Actions 로그가 목록으로 알려준다.** 눈으로 찾을 필요 없음.
+  - 여러 곳을 한 번에 고칠 땐 편집기의 **"폴더 전체 찾아 바꾸기"** 를 쓴다.
+
+---
+
+## 5. 출처 · 최종 수정일 규칙 (엄밀성)
+
+상세 규칙은 `docs/conventions.md`에 있다. 요약:
+
+- **날짜 형식은 항상 ISO 8601: `YYYY-MM-DD`.** (예: 2026-09-21) 다른 형식 금지.
+- **페이지 최종 수정일**: 제목 바로 아래에 `*최종 수정일: YYYY-MM-DD*`. 페이지를 고칠 때마다 갱신.
+- **문장 단위 출처**: 각주(footnote) 방식. 문장 끝에 `[^식별자]`, 페이지 하단에 각주 내용.
+- **문장 단위 검증일**: 시간에 따라 변하는 값(표준 버전·권고값 등)은 그 문장 각주에 확인일을 적는다.
+- **웹·URL 출처**: 접근일 `(accessed YYYY-MM-DD)` **필수.** (웹 내용은 변하므로)
+- **직접 작성/추론한 내용**: 출처 없음을 각주로 **명시**한다. 예: `[^own]: 직접 작성 (2026-09-21).`
+- 각주 식별자는 의미가 드러나게: `[^fips204]`, `[^fraleigh]`. 순번(`[^1]`)은 지양.
+- 페이지 맨 아래 "출처(References)" 절에 그 페이지의 참고문헌을 포괄적으로 한 번 더 정리.
+
+---
+
+## 6. 항목 작성 템플릿
+
+새 항목은 이 뼈대로 시작한다. (규칙 5를 반영한 형태)
+
+````markdown
+# 용어명 (English Term)
+
+*최종 수정일: YYYY-MM-DD*
+
+<p class="definition">
+한 줄 정의.
+</p>
+
+## 개요
+
+상세 설명. 사실 주장에는 각주로 출처를 단다.[^ref1]
+시간에 따라 변하는 값은 문장 각주에 확인일을 남긴다.[^ref2]
+
+## 수식 / 증명 (필요 시)
+
+$$
+E = mc^2
+$$
+
+??? note "증명 (펼치기)"
+    증명 내용. $\blacksquare$
+
+## 코드 / 알고리즘 (필요 시)
+
+아래 예시는 개념 설명용으로 직접 작성한 것이다.[^own]
+
+```python
+def example():
+    return "hello"
+```
+
+## 출처 (References)
+
+- (포괄적 참고문헌 목록)
+
+[^ref1]: 저자/기관, *문서명*, 발행일. DOI 또는 URL <https://example.com> (accessed YYYY-MM-DD).
+[^ref2]: 저자/기관, *문서명*, 발행일. 확인일 YYYY-MM-DD.
+[^own]: 직접 작성 (YYYY-MM-DD). 특정 문헌을 그대로 옮긴 것이 아님.
+
+<div class="entry-meta">
+분류: (정보보안/암호/수학) · 관련어: ...<br>
+관련 항목: <a href="#">다른 항목</a>
+</div>
+````
+
+---
+
+## 7. 수식 · 코드 · PDF 작성법
+
+**수식 (LaTeX)** — `javascripts/mathjax.js`가 렌더링한다.
+- 인라인: `$E = mc^2$`
+- 블록: `$$ ... $$`
+- 증명 접이식 상자: `??? note "증명 (펼치기)"` 아래 들여쓰기
+
+**코드 / 알고리즘** — 삼중 백틱 + 언어명. 문법 강조 + 복사 버튼 자동.
+````markdown
+```python
+def f(): ...
+```
+````
+
+**참고 PDF** — 세 가지 방법 (상세는 `docs/references/index.md`)
+1. 외부 링크: `[제목](https://doi.org/...)`
+2. 저장소 보관본: `docs/references/`에 PDF를 넣고 `[제목](example.pdf)`
+3. 페이지 내 임베드: `<iframe class="pdf-embed" src="example.pdf"></iframe>` (무거우면 링크 권장)
+
+---
+
+## 8. 문제 해결 (오늘 실제로 겪은 것들)
+
+**사이트를 고쳤는데 안 바뀐다:**
+1. **Actions 탭**을 먼저 본다. 빨간 X면 빌드 실패 → 배포 안 됨(이전 버전이 그대로 보임).
+2. 초록 체크인데도 그대로면 **브라우저 캐시.** Mac에서 `Cmd + Shift + R` (강력 새로고침).
+3. Actions에 기록이 없으면 **Push가 안 된 것.** GitHub Desktop에서 Push 확인.
+
+**빌드가 실패한다 (`Aborted with N warnings in strict mode!`):**
+- 원인은 대부분 **링크/경로 불일치.** 로그가 어느 파일의 어느 링크인지 알려준다.
+- 자주 나오는 원인: ①파일 이름 대소문자 불일치 ②철자 오타 ③파일을 옮겼는데 링크를 안 고침 ④`nav`가 없는 파일을 가리킴.
+- `--strict`는 **일부러 켜둔 안전장치.** 링크가 깨진 불량 사이트가 배포되는 걸 막아준다. 끄지 말 것.
+
+**핵심 마음가짐:** 빌드 실패는 사고가 아니라 **품질 검사관이 일한 것.** 로그를 읽고 지목된 곳을 고치면 된다.
+
+---
+
+## 9. 자주 쓰는 경로 메모
+
+- 사이트 주소: `https://snowcat44.github.io/Notes/`
+- 저장소: `https://github.com/SnowCat44/Notes`
+- 배포 상태 확인: 저장소 → **Actions** 탭
+- Pages 설정: 저장소 → Settings → Pages (Source = **GitHub Actions**여야 함)
