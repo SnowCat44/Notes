@@ -1,8 +1,16 @@
+# 사이트 제목 - 사이트 왼쪽 상단(로고 옆)와 브라우저 탭에 표시됨
 site_name: Notes on Information Security, Cryptography, and Mathematics
-site_description: 정보보안 · 암호 · 수학 학술 노트
-site_url: https://SnowCat44.github.io/Notes/
-repo_url: https://github.com/SnowCat44
+
+# 사이트 URL - 실제로 배포되는 사이트 주소
+site_url: https://SnowCat44.github.io/Notes
+
+# 저장소 URL - GitHub 저장소 주소
+repo_url: https://github.com/SnowCat44/SnowCat44
+
+# 저장소 이름 - 실제로 표시되는 이름
 repo_name: SnowCat44
+
+# 저장소 브랜치 - 이 페이지 편집 링크의 경로 규칙
 edit_uri: edit/main/docs/
 
 theme:
