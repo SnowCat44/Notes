@@ -1,4 +1,4 @@
-# 유한체 (Finite Field)
+# 대수학 (Algebra)
 
 <p class="definition">
 원소의 개수가 유한한 <a href="#">체(field)</a>. 갈루아 체(Galois Field)라고도 하며 $\mathrm{GF}(q)$ 또는 $\mathbb{F}_q$로 표기한다.
