@@ -16,13 +16,14 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: ko
+  generator: false             #  "Made with Material for MkDocs" 문구 제거
   features:
     - navigation.instant       # 페이지 즉시 전환
     - navigation.tracking      # URL에 현재 위치 반영
     - navigation.sections      # 사이드바에 구역 제목 표시
     - navigation.top           # 맨 위로 버튼
-    - navigation.footer        # 이전/다음 문서 이동
-    - search.suggest           # 검색 자동완성
+    #- navigation.footer       # 이전/다음 문서 이동
+    #- search.suggest          # 검색 자동완성
     - search.highlight         # 검색어 강조
     - content.code.copy        # 코드 블록 복사 버튼
     - content.action.edit      # 각 문서 편집 링크
