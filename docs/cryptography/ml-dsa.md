@@ -47,5 +47,5 @@ $$
 
 <div class="entry-meta">
 분류: 암호 · 관련어: 전자서명, 후양자암호(PQC), 격자, FIPS 204<br>
-관련 항목: <a href="../../mathematics/finite-field/">유한체</a>
+관련 항목: <a href="../../mathematics/algebra/">유한체</a>
 </div>

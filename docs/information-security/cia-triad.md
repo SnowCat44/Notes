@@ -24,5 +24,5 @@ CIA 3요소는 정보보안 정책과 통제를 설계할 때 기준이 되는 �
 
 <div class="entry-meta">
 분류: 정보보안 · 관련어: 기밀성, 무결성, 가용성, 접근제어<br>
-참고: <a href="../../refs/">References</a>
+참고: <a href="../../references/">References</a>
 </div>
